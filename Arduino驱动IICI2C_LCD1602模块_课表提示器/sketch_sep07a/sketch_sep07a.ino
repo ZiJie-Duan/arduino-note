@@ -136,6 +136,8 @@ if (ztm == HIGH){
     flash();
     int ztm = digitalRead(red);
     if (ztm == HIGH){
+      lcd.clear();
+      delay(500);
       zc_day = get_day();
       lcd.clear();
       delay(500);
