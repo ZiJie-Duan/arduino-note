@@ -187,19 +187,54 @@ def get_string():
 	return restr
 
 
-def s_server():
-	
+def get_server_massage():
+  massage_list = []
+  sock = socket.socket()
+  HOST = "ahhhhhh.top"
+  PORT = 2233
+  sock.connect((HOST, PORT))
+  #发送模式
+  sock.sendall("SXY".encode())
+  cs = sock.recv(1024).decode()
 
+  for x in range(int(cs)):
+    sock.sendall("get_message".encode())
+    massage_list.append(sock.recv(1024).decode())
+
+  return massage_list
 
 
 def main():
-	init_lcd()
-	clear_lcd()
-	print_lcd(0, 0, "Talk to SXY")
-	print_lcd(0, 1, "system V1.0")
+  init_lcd()
+  clear_lcd()
+  print_lcd(0, 0, "Talk to SXY")
+  print_lcd(0, 1, "system V1.0")
 
-	time.sleep(3)
-	clear_lcd()
+  time.sleep(3)
+
+  clear_lcd()
+  print_lcd(0, 0, "Mode selection")
+  print_lcd(0, 1, "recv message")
+  zt = 0
+
+  while True:
+
+    if GPIO.event_detected(blue_p):
+      zt = 0
+      clear_lcd()
+      print_lcd(0, 0, "Mode selection")
+      print_lcd(0, 1, "recv message")
+
+    elif GPIO.event_detected(green_p):
+      zt = 1
+      clear_lcd()
+      print_lcd(0, 0, "Mode selection")
+      print_lcd(0, 1, "send message")
+
+    elif GPIO.event_detected(red_p):
+      print(zt)
+
+
 
 main()
 
