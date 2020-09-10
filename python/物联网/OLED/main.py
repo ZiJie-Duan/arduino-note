@@ -10,6 +10,7 @@ oled.fill(1)
 oled.show()
 oled.fill(0)
 oled.show()
+
 a = 5/0
 while True:
 	with open("a.json") as zx:
