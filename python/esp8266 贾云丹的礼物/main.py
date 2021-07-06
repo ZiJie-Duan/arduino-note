@@ -37,12 +37,27 @@ class MessageControl:
     def get_all_messages(self):
         return self.message_list
 
+    
+
 
 class OledDrive:
     
     def __init__(self):
         self.i2c = I2C(scl=Pin(5), sda=Pin(4))
         self.oled = SSD1306_I2C(128, 64, self.i2c)
+
+    def show_small(self):
+        img_names = [1,2,3,4,5,6,7,8,9,10]
+        img = []
+        while True:
+            for img_name in img_names:
+                with open(str(img_name)+".json") as zx:
+                    img = json.load(zx)
+                self.oled.fill(0)
+                for pix in img:
+                    self.oled.pixel(pix[0], pix[1], 1)
+                self.oled.show()
+                img = []
 
     def change_message(self,messages):
         self.oled.fill(0)
@@ -72,6 +87,11 @@ class OledDrive:
         self.oled.text("System V1.0", 0, 10)
         self.oled.text("ROOT MOD", 0, 20)
         self.oled.text("made by Peter", 0, 30)
+        self.oled.show()
+    
+    def show_opening_page(self):
+        self.oled.fill(0)
+        self.oled.text("Dianna", 35, 30)
         self.oled.show()
 
 
@@ -168,7 +188,7 @@ class Core:
 
     def buttom_is_put(self):
         if self.buttom_pin.value() == 1:
-            time.sleep(1)
+            time.sleep(0.2)
             if self.buttom_pin.value() == 1:
                 return True
         return False
@@ -177,8 +197,11 @@ class Core:
     def start(self):
         
         if self.is_system_run():
+            if self.buttom_is_put():
+                self.oled.show_small()
             self.sys_mod()
-        
+
+        self.oled.show_opening_page()
         message_index = 0
 
         while True:
@@ -187,11 +210,11 @@ class Core:
                 message_page = self.messagec.message_list[message_index]
                 self.oled.change_message(messages=message_page)
                 if message_index == len(self.messagec.message_list)-1:
-                    message_index == 0
+                    message_index = 0
                 else:
                     message_index += 1
 
-    
+
 
 def main():
     oled_drive = OledDrive()
