@@ -188,7 +188,7 @@ class Core:
 
     def buttom_is_put(self):
         if self.buttom_pin.value() == 1:
-            time.sleep(0.2)
+            time.sleep(0.1)
             if self.buttom_pin.value() == 1:
                 return True
         return False
