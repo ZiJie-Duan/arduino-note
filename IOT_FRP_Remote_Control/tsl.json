@@ -1,0 +1,137 @@
+{
+  "schema": "https://iotx-tsl.oss-ap-southeast-1.aliyuncs.com/schema.json",
+  "profile": {
+    "version": "1.0",
+    "productKey": "a1OgKq4TEdh"
+  },
+  "properties": [
+    {
+      "identifier": "Frp_Running_State",
+      "name": "frp运行状态",
+      "accessMode": "rw",
+      "desc": "用于开启以及关闭FRP内网穿透服务",
+      "required": false,
+      "dataType": {
+        "type": "bool",
+        "specs": {
+          "0": "关闭",
+          "1": "开启"
+        }
+      }
+    },
+    {
+      "identifier": "Frp_Server_IP",
+      "name": "Frp服务器IP",
+      "accessMode": "rw",
+      "required": false,
+      "dataType": {
+        "type": "text",
+        "specs": {
+          "length": "10240"
+        }
+      }
+    }
+  ],
+  "events": [
+    {
+      "identifier": "post",
+      "name": "post",
+      "type": "info",
+      "required": true,
+      "desc": "属性上报",
+      "method": "thing.event.property.post",
+      "outputData": [
+        {
+          "identifier": "Frp_Running_State",
+          "name": "frp运行状态",
+          "dataType": {
+            "type": "bool",
+            "specs": {
+              "0": "关闭",
+              "1": "开启"
+            }
+          }
+        },
+        {
+          "identifier": "Frp_Server_IP",
+          "name": "Frp服务器IP",
+          "dataType": {
+            "type": "text",
+            "specs": {
+              "length": "10240"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "services": [
+    {
+      "identifier": "set",
+      "name": "set",
+      "required": true,
+      "callType": "async",
+      "desc": "属性设置",
+      "method": "thing.service.property.set",
+      "inputData": [
+        {
+          "identifier": "Frp_Running_State",
+          "name": "frp运行状态",
+          "dataType": {
+            "type": "bool",
+            "specs": {
+              "0": "关闭",
+              "1": "开启"
+            }
+          }
+        },
+        {
+          "identifier": "Frp_Server_IP",
+          "name": "Frp服务器IP",
+          "dataType": {
+            "type": "text",
+            "specs": {
+              "length": "10240"
+            }
+          }
+        }
+      ],
+      "outputData": []
+    },
+    {
+      "identifier": "get",
+      "name": "get",
+      "required": true,
+      "callType": "async",
+      "desc": "属性获取",
+      "method": "thing.service.property.get",
+      "inputData": [
+        "Frp_Running_State",
+        "Frp_Server_IP"
+      ],
+      "outputData": [
+        {
+          "identifier": "Frp_Running_State",
+          "name": "frp运行状态",
+          "dataType": {
+            "type": "bool",
+            "specs": {
+              "0": "关闭",
+              "1": "开启"
+            }
+          }
+        },
+        {
+          "identifier": "Frp_Server_IP",
+          "name": "Frp服务器IP",
+          "dataType": {
+            "type": "text",
+            "specs": {
+              "length": "10240"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
