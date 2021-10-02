@@ -23,6 +23,13 @@ class WINDOWS_CONTROL:
         }
         self.running_state = 0
     
+    def get_data(self):
+        config = configparser.ConfigParser()
+        config.read(r'C:\Users\lucyc\Desktop\frp_0.37.1_windows_amd64\frpc.ini')
+        values = config.items('common')
+        for key, value in values:
+            self.datas["common"][key]=value
+
     def kill_program(self):
         try:
             pids = psutil.pids()
@@ -60,6 +67,48 @@ class WINDOWS_CONTROL:
     def start_frp_father(self):
         t = threading.Thread(target=self.start_frp)
         t.start()
+    
+    def Shut_Down(self):
+        os.system("shutdown -s -t 0")
+
+    def command(self,params):
+        if "Frp_Server_IP" in params:
+            print("{} 进行重设至 {}".format("Frp_Server_IP",params["Frp_Server_IP"]))
+            self.datas["common"]["server_addr"] = params["Frp_Server_IP"]
+            self.write_frp_ini()
+            print("Finish")
+        
+        if "Frp_Server_Port" in params:
+            print("{} 进行重设至 {}".format("Frp_Server_Port",params["Frp_Server_Port"]))
+            self.datas["common"]["server_port"] = params["Frp_Server_Port"]
+            self.write_frp_ini()
+        
+        if "Frp_Server_Token" in params:
+            print("{} 进行重设至 {}".format("Frp_Server_Token",params["Frp_Server_Token"]))
+            self.datas["common"]["token"] = params["Frp_Server_Token"]
+            self.write_frp_ini()
+
+        if "Frp_Running_Switch" in params:
+            if params["Frp_Running_Switch"] == 1:
+                print("{} 进行重设至 {}".format("Frp_Running_Switch",params["Frp_Running_Switch"]))
+                self.running_state = 1
+                self.start_frp_father()
+            else:
+                print("{} 进行重设至 {}".format("Frp_Running_Switch",params["Frp_Running_Switch"]))
+                self.running_state = 0
+        
+        if "PC_Power" in params:
+            if params["PC_Power"] == 0:
+                self.Shut_Down()
+    
+    def prepare_data(self):
+        prop_data = {}
+        prop_data["Frp_Running_Switch"] = self.running_state
+        prop_data["Frp_Server_IP"] = self.datas["common"]["server_addr"]
+        prop_data["Frp_Server_Port"] = self.datas["common"]["server_port"]
+        prop_data["Frp_Server_Token"] = self.datas["common"]["token"]
+        prop_data["PC_Power"] = 1
+        return prop_data
 
 class IOT:
 
@@ -106,31 +155,18 @@ class IOT:
             (request_id, code, str(data), message))
 
     def on_thing_prop_changed(self, params, userdata):
-        #阿里云IOT平台进行 属性下发时的调用
+        #阿里云IOT平台进行 属性下发时的调用s
         print("on_thing_prop_changed params:" + str(params))
-        if "Frp_Server_IP" in params:
-            print("{} 进行重设至 {}".format("Frp_Server_IP",params["Frp_Server_IP"]))
-            self.windows.datas["common"]["server_addr"] = params["Frp_Server_IP"]
-            self.windows.write_frp_ini()
-
-        if "Frp_Running_State" in params:
-            if params["Frp_Running_State"] == 1:
-                print("{} 进行重设至 {}".format("Frp_Running_State",params["Frp_Running_State"]))
-                self.windows.running_state = 1
-                self.windows.start_frp_father()
-            else:
-                print("{} 进行重设至 {}".format("Frp_Running_State",params["Frp_Running_State"]))
-                self.windows.running_state = 0
+        self.windows.command(params=params)
 
     def upload_state(self):
-        prop_data = {}
-        prop_data["Frp_Running_State"] = self.windows.running_state
-        prop_data["Frp_Server_IP"] = self.windows.datas["common"]["server_addr"]
-
+        prop_data = self.windows.prepare_data()
         rc, request_id = self.lk.thing_post_property(prop_data)
 
 def main():
-    iot = IOT(windows=WINDOWS_CONTROL())
+    windows = WINDOWS_CONTROL()
+    windows.get_data()
+    iot = IOT(windows=windows)
     while 1:
         time.sleep(3)
         iot.upload_state()
