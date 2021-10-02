@@ -69,7 +69,7 @@ class WINDOWS_CONTROL:
         t.start()
     
     def Shut_Down(self):
-        os.system("shutdown -s -t 0")
+        os.system("shutdown -s -f -t 0")
 
     def command(self,params):
         if "Frp_Server_IP" in params:
@@ -168,7 +168,7 @@ def main():
     windows.get_data()
     iot = IOT(windows=windows)
     while 1:
-        time.sleep(3)
+        time.sleep(5)
         iot.upload_state()
 
 main()

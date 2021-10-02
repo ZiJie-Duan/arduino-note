@@ -6,8 +6,8 @@
   },
   "properties": [
     {
-      "identifier": "Frp_Running_State",
-      "name": "frp运行状态",
+      "identifier": "Frp_Running_Switch",
+      "name": "frp运行开关",
       "accessMode": "rw",
       "desc": "用于开启以及关闭FRP内网穿透服务",
       "required": false,
@@ -30,6 +30,43 @@
           "length": "10240"
         }
       }
+    },
+    {
+      "identifier": "Frp_Server_Port",
+      "name": "Frp服务器端口",
+      "accessMode": "rw",
+      "required": false,
+      "dataType": {
+        "type": "text",
+        "specs": {
+          "length": "10240"
+        }
+      }
+    },
+    {
+      "identifier": "Frp_Server_Token",
+      "name": "Frp服务器令牌",
+      "accessMode": "rw",
+      "required": false,
+      "dataType": {
+        "type": "text",
+        "specs": {
+          "length": "10240"
+        }
+      }
+    },
+    {
+      "identifier": "PC_Power",
+      "name": "计算机电源",
+      "accessMode": "rw",
+      "required": false,
+      "dataType": {
+        "type": "bool",
+        "specs": {
+          "0": "Close",
+          "1": "Open"
+        }
+      }
     }
   ],
   "events": [
@@ -42,8 +79,8 @@
       "method": "thing.event.property.post",
       "outputData": [
         {
-          "identifier": "Frp_Running_State",
-          "name": "frp运行状态",
+          "identifier": "Frp_Running_Switch",
+          "name": "frp运行开关",
           "dataType": {
             "type": "bool",
             "specs": {
@@ -59,6 +96,37 @@
             "type": "text",
             "specs": {
               "length": "10240"
+            }
+          }
+        },
+        {
+          "identifier": "Frp_Server_Port",
+          "name": "Frp服务器端口",
+          "dataType": {
+            "type": "text",
+            "specs": {
+              "length": "10240"
+            }
+          }
+        },
+        {
+          "identifier": "Frp_Server_Token",
+          "name": "Frp服务器令牌",
+          "dataType": {
+            "type": "text",
+            "specs": {
+              "length": "10240"
+            }
+          }
+        },
+        {
+          "identifier": "PC_Power",
+          "name": "计算机电源",
+          "dataType": {
+            "type": "bool",
+            "specs": {
+              "0": "Close",
+              "1": "Open"
             }
           }
         }
@@ -75,8 +143,8 @@
       "method": "thing.service.property.set",
       "inputData": [
         {
-          "identifier": "Frp_Running_State",
-          "name": "frp运行状态",
+          "identifier": "Frp_Running_Switch",
+          "name": "frp运行开关",
           "dataType": {
             "type": "bool",
             "specs": {
@@ -92,6 +160,37 @@
             "type": "text",
             "specs": {
               "length": "10240"
+            }
+          }
+        },
+        {
+          "identifier": "Frp_Server_Port",
+          "name": "Frp服务器端口",
+          "dataType": {
+            "type": "text",
+            "specs": {
+              "length": "10240"
+            }
+          }
+        },
+        {
+          "identifier": "Frp_Server_Token",
+          "name": "Frp服务器令牌",
+          "dataType": {
+            "type": "text",
+            "specs": {
+              "length": "10240"
+            }
+          }
+        },
+        {
+          "identifier": "PC_Power",
+          "name": "计算机电源",
+          "dataType": {
+            "type": "bool",
+            "specs": {
+              "0": "Close",
+              "1": "Open"
             }
           }
         }
@@ -106,13 +205,16 @@
       "desc": "属性获取",
       "method": "thing.service.property.get",
       "inputData": [
-        "Frp_Running_State",
-        "Frp_Server_IP"
+        "Frp_Running_Switch",
+        "Frp_Server_IP",
+        "Frp_Server_Port",
+        "Frp_Server_Token",
+        "PC_Power"
       ],
       "outputData": [
         {
-          "identifier": "Frp_Running_State",
-          "name": "frp运行状态",
+          "identifier": "Frp_Running_Switch",
+          "name": "frp运行开关",
           "dataType": {
             "type": "bool",
             "specs": {
@@ -128,6 +230,37 @@
             "type": "text",
             "specs": {
               "length": "10240"
+            }
+          }
+        },
+        {
+          "identifier": "Frp_Server_Port",
+          "name": "Frp服务器端口",
+          "dataType": {
+            "type": "text",
+            "specs": {
+              "length": "10240"
+            }
+          }
+        },
+        {
+          "identifier": "Frp_Server_Token",
+          "name": "Frp服务器令牌",
+          "dataType": {
+            "type": "text",
+            "specs": {
+              "length": "10240"
+            }
+          }
+        },
+        {
+          "identifier": "PC_Power",
+          "name": "计算机电源",
+          "dataType": {
+            "type": "bool",
+            "specs": {
+              "0": "Close",
+              "1": "Open"
             }
           }
         }
