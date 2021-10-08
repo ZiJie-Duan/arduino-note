@@ -141,14 +141,16 @@ class IOT:
         print("on_connect:%d,rc:%d,userdata:" % (session_flag, rc))
         pass
 
-    def on_disconnect(rc, userdata):
+    def on_disconnect(self, rc, userdata):
         print("on_disconnect:rc:%d,userdata:" % rc)
+        self.windows.Shut_Down()
 
     def on_thing_enable(self, userdata):
         print("on_thing_enable")
 
     def on_thing_disable(self, userdata):
         print("on_thing_disable")
+        self.windows.Shut_Down()
 
     def on_thing_prop_post(self, request_id, code, data, message,userdata):
         print("on_thing_prop_post request id:%s, code:%d, data:%s message:%s" %
@@ -168,7 +170,8 @@ def main():
     windows.get_data()
     iot = IOT(windows=windows)
     while 1:
-        time.sleep(5)
+        time.sleep(20)
         iot.upload_state()
+
 
 main()

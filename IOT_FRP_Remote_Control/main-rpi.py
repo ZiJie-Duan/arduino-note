@@ -49,7 +49,7 @@ class IOT:
         #阿里云IOT平台进行 属性下发时的调用s
         print("on_thing_prop_changed params:" + str(params))
         if "PC_Power" in params:
-            if params["params"] == 1:
+            if params["PC_Power"] == 1:
                 print("唤醒PC主机")
                 self.pc_power = 1
                 os.system("etherwake 00:D8:61:77:C1:FC")
@@ -65,7 +65,7 @@ class IOT:
 def main():
     iot = IOT()
     while 1:
-        time.sleep(10)
+        time.sleep(20)
         iot.upload_state()
 
 main()
