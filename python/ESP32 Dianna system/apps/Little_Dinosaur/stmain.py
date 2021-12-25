@@ -1,12 +1,45 @@
 import json
 import time
 
-class APP():
+class DINOSAUR:
+    
+    def __init__(self):
+        self.x_axis = 0
+        self.y_axis = 0
+
+    def jump(self):
+
+        
+
+    def run_fast(self):
+
+
+'''
+class GROUND:
+    
+    def __init__(self):
+        self.x_axis = 0
+        self.y_axis = 0
+
+    def get_location(self):
+
+
+class OBSTACLE:
+    
+    def __init__(self):
+        self.x_axis = 0
+        self.y_axis = 0
+
+    def get_location(self):
+'''     
+
+class APP:
     def __init__(self):
         self.esp_machine = None
 
     def start(self):
-        img1 = []
+
+        run = []
         with open("/apps/Little_Dinosaur/running1.json") as zx:
             img1 = json.load(zx)
         img2 = []
