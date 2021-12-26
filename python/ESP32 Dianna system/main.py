@@ -3,6 +3,8 @@ import time
 import json
 from ssd1306 import SSD1306_I2C
 import _thread
+import webrepl
+import network
 
 class ESP32_MACHINE:
     def __init__(self):
@@ -19,6 +21,26 @@ class ESP32_MACHINE:
             "select":False,
             "out":False
         }
+        self.wlan = None
+   
+    def test_wifi_link(self):
+        if self.wlan.isconnected():
+            return True
+        return False
+
+    def start_wifi(self,name,password):
+        self.wlan = network.WLAN(network.STA_IF)
+        self.wlan.active(True)
+        if self.test_wifi_link():
+            pass
+        else:
+            try:
+                self.wlan.connect(name, password)
+            except:
+                pass
+
+    def start_webrepl(self,password):
+        webrepl.start(password=password)
 
     def get_gpio_change(self):
         if self.real_time_status["state"]:
@@ -41,12 +63,12 @@ class ESP32_MACHINE:
                 self.real_time_status["state"] = True
             else:
                 self.real_time_status["in"] = False
-            if self.buttom2.value() == 1:
+            if self.buttom2.value() == 1: 
                 self.real_time_status["select"] = True
                 self.real_time_status["state"] = True
             else:
                 self.real_time_status["select"] = False
-            if self.buttom3.value() == 1:
+            if self.buttom3.value() == 0:  #针对先行者开发板的 极端优化
                 self.real_time_status["out"] = True
                 self.real_time_status["state"] = True
             else:
@@ -225,8 +247,9 @@ def main():
     freq(240000000) 
 
     esp_machine.buttom1 = Pin(27, Pin.IN)
-    esp_machine.buttom2 = Pin(32, Pin.IN)
-    esp_machine.buttom3 = Pin(33, Pin.IN)
+    #esp_machine.buttom2 = Pin(32, Pin.IN)
+    esp_machine.buttom2 = Pin(33, Pin.IN)
+    esp_machine.buttom3 = Pin(0, Pin.IN)
 
     i2c1 = I2C(scl=Pin(22), sda=Pin(23))
     oled1 = SSD1306_I2C(128, 64, i2c1)

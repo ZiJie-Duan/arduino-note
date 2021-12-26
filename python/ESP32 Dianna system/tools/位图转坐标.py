@@ -38,6 +38,6 @@ class PpmToJson:
 			print("转换完成：" + json_path)
 
 ppm = PpmToJson()
-ppm.data_name_list = ["fast_runing1","fast_runing2"]
-ppm.path = r"C:\Users\lucyc\Desktop\arduino-note\python\ESP32 Dianna system\apps\Little_Dinosaur\resource"
+ppm.data_name_list = ["map"]
+ppm.path = r"C:\Users\Peter Duan\Desktop\arduino-note\python\ESP32 Dianna system\apps\Little_Dinosaur\resource"
 ppm.change_ppm_to_json()
