@@ -1,0 +1,5 @@
+Added Component: Designator=*(Micro_usb)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=VCC microusb Pin=*-1
+Added Pin To Net: NetName=GND microusb Pin=*-5
+Added Member To Class: ClassName=Pioneer Member=Component * Micro_usb

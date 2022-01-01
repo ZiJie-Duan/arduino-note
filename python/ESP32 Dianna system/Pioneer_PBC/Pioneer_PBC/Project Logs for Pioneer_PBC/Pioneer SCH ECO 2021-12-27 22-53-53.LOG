@@ -1,0 +1,9 @@
+Change Component Designator: Old Designator=* New Designator=*1
+Change Component Designator: Old Designator=Buttom_A New Designator=Buttom_A1
+Change Component Designator: Old Designator=Buttom_B New Designator=Buttom_B1
+Change Component Designator: Old Designator=Buttom_X New Designator=Buttom_X1
+Change Component Designator: Old Designator=Buttom_Y New Designator=Buttom_Y1
+Change Component Designator: Old Designator=BUZZER New Designator=BUZZER1
+Change Component Designator: Old Designator=Charger New Designator=Charger1
+Change Component Designator: Old Designator=ESP32 New Designator=ESP1
+Change Component Designator: Old Designator=Rocker New Designator=Rocker1

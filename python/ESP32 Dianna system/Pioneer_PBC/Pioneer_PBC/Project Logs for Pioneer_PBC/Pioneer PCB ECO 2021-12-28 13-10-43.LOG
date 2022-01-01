@@ -1,0 +1,108 @@
+Added Component: Designator=*1(SOT23_M)
+Add component. Clean all parameters for all variants
+Added Component: Designator=*(Micro_usb)
+Add component. Clean all parameters for all variants
+Added Component: Designator=BT1(BAT-2)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageDescription"; Value = "Battery; 2 Leads"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageReference"; Value = "BAT-2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Published"; Value = "24-Mar-1999"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Component: Designator=Buttom_A1(Buttom)
+Add component. Clean all parameters for all variants
+Added Component: Designator=Buttom_B1(Buttom)
+Add component. Clean all parameters for all variants
+Added Component: Designator=Buttom_X1(Buttom)
+Add component. Clean all parameters for all variants
+Added Component: Designator=Buttom_Y1(Buttom)
+Add component. Clean all parameters for all variants
+Added Component: Designator=BUZZER1(Buzzer)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "Manufacturer Link"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.megastar.com/linecard/buzzmode/index.php"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "DatasheetVersion"; Value = "17-Dec-2003"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Dec-2003"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Schematic revised, PCB Footprint replaced."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageDescription"; Value = "Magnetic Transducer Buzzer"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageReference"; Value = "ABSM-1574"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Published"; Value = "24-Mar-1999"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Component: Designator=Charger1(charge)
+Add component. Clean all parameters for all variants
+Added Component: Designator=ESP1(NodeMCU-32)
+Add component. Clean all parameters for all variants
+Added Component: Designator=OLED1(OLED)
+Add component. Clean all parameters for all variants
+Added Component: Designator=OLED2(OLED)
+Add component. Clean all parameters for all variants
+Added Component: Designator=Rocker1(rocker)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=GND Pin=*1-1
+Added Pin To Net: NetName=VCC Pin=*1-2
+Added Pin To Net: NetName=Net*1_3 Pin=*1-3
+Added Pin To Net: NetName=VCC microusb Pin=*-1
+Added Pin To Net: NetName=GND microusb Pin=*-5
+Added Pin To Net: NetName=NetBT1_1 Pin=BT1-1
+Added Pin To Net: NetName=NetBT1_2 Pin=BT1-2
+Added Pin To Net: NetName=VCC Pin=Buttom_A1-1
+Added Pin To Net: NetName=Buttom_A_IO Pin=Buttom_A1-4
+Added Pin To Net: NetName=VCC Pin=Buttom_B1-1
+Added Pin To Net: NetName=Buttom_B_IO Pin=Buttom_B1-4
+Added Pin To Net: NetName=VCC Pin=Buttom_X1-1
+Added Pin To Net: NetName=Buttom_X_IO Pin=Buttom_X1-4
+Added Pin To Net: NetName=VCC Pin=Buttom_Y1-1
+Added Pin To Net: NetName=Buttom_Y_IO Pin=Buttom_Y1-4
+Added Pin To Net: NetName=Buzzer IO Pin=BUZZER1-1
+Added Pin To Net: NetName=GND Pin=BUZZER1-2
+Added Pin To Net: NetName=VCC microusb Pin=Charger1-1
+Added Pin To Net: NetName=GND microusb Pin=Charger1-2
+Added Pin To Net: NetName=NetBT1_2 Pin=Charger1-3
+Added Pin To Net: NetName=NetBT1_1 Pin=Charger1-4
+Added Pin To Net: NetName=GND Pin=Charger1-5
+Added Pin To Net: NetName=Net*1_3 Pin=Charger1-6
+Added Pin To Net: NetName=VCC Pin=ESP1-1
+Added Pin To Net: NetName=Rocker_UP_IO Pin=ESP1-3
+Added Pin To Net: NetName=Rocker_DWN_IO Pin=ESP1-4
+Added Pin To Net: NetName=Rocker_LFT_IO Pin=ESP1-5
+Added Pin To Net: NetName=Rocker_RHT_IO Pin=ESP1-6
+Added Pin To Net: NetName=OLED1_SDA Pin=ESP1-7
+Added Pin To Net: NetName=OLED1_SCL Pin=ESP1-8
+Added Pin To Net: NetName=Buttom_A_IO Pin=ESP1-9
+Added Pin To Net: NetName=Buttom_B_IO Pin=ESP1-10
+Added Pin To Net: NetName=Rocker_MID_IO Pin=ESP1-11
+Added Pin To Net: NetName=Buzzer IO Pin=ESP1-12
+Added Pin To Net: NetName=OLED2_SDA Pin=ESP1-13
+Added Pin To Net: NetName=OLED2_SCL Pin=ESP1-15
+Added Pin To Net: NetName=GND Pin=ESP1-20
+Added Pin To Net: NetName=Buttom_X_IO Pin=ESP1-21
+Added Pin To Net: NetName=Buttom_Y_IO Pin=ESP1-22
+Added Pin To Net: NetName=GND Pin=OLED1-1
+Added Pin To Net: NetName=VCC Pin=OLED1-2
+Added Pin To Net: NetName=OLED1_SCL Pin=OLED1-3
+Added Pin To Net: NetName=OLED1_SDA Pin=OLED1-4
+Added Pin To Net: NetName=GND Pin=OLED2-1
+Added Pin To Net: NetName=VCC Pin=OLED2-2
+Added Pin To Net: NetName=OLED2_SCL Pin=OLED2-3
+Added Pin To Net: NetName=OLED2_SDA Pin=OLED2-4
+Added Pin To Net: NetName=VCC Pin=Rocker1-1
+Added Pin To Net: NetName=Rocker_UP_IO Pin=Rocker1-2
+Added Pin To Net: NetName=Rocker_DWN_IO Pin=Rocker1-3
+Added Pin To Net: NetName=Rocker_LFT_IO Pin=Rocker1-4
+Added Pin To Net: NetName=Rocker_RHT_IO Pin=Rocker1-5
+Added Pin To Net: NetName=Rocker_MID_IO Pin=Rocker1-6
+Added Member To Class: ClassName=Pioneer Member=Component *1 DC3.3
+Added Member To Class: ClassName=Pioneer Member=Component * Micro_usb
+Added Member To Class: ClassName=Pioneer Member=Component BT1 Battery
+Added Member To Class: ClassName=Pioneer Member=Component Buttom_A1 Buttom
+Added Member To Class: ClassName=Pioneer Member=Component Buttom_B1 Buttom
+Added Member To Class: ClassName=Pioneer Member=Component Buttom_X1 Buttom
+Added Member To Class: ClassName=Pioneer Member=Component Buttom_Y1 Buttom
+Added Member To Class: ClassName=Pioneer Member=Component BUZZER1 Buzzer
+Added Member To Class: ClassName=Pioneer Member=Component Charger1 Charger
+Added Member To Class: ClassName=Pioneer Member=Component ESP1 NodeMCU-32
+Added Member To Class: ClassName=Pioneer Member=Component OLED1 OLED
+Added Member To Class: ClassName=Pioneer Member=Component OLED2 OLED
+Added Member To Class: ClassName=Pioneer Member=Component Rocker1 Rocker
+Added Room: Name=Pioneer

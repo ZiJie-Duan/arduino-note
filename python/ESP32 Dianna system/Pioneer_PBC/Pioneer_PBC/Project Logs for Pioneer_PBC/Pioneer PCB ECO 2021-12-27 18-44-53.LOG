@@ -1,0 +1,28 @@
+Added Component: Designator=BT?(BAT-2)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageDescription"; Value = "Battery; 2 Leads"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageReference"; Value = "BAT-2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Published"; Value = "24-Mar-1999"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Net: Name=Buttom_A_IO
+Added Net: Name=Buttom_B_IO
+Added Net: Name=Buttom_X_IO
+Added Net: Name=Buttom_Y_IO
+Added Net: Name=GND microusb
+Added Net: Name=GND
+Added Net: Name=Net*_3
+Added Pin To Net: NetName=NetBT?_1 Pin=BT?-1
+Added Net: Name=NetBT?_1
+Added Pin To Net: NetName=NetBT?_2 Pin=BT?-2
+Added Net: Name=NetBT?_2
+Added Net: Name=NetLabel35
+Added Net: Name=NetLabel36
+Added Net: Name=NetLabel37
+Added Net: Name=NetLabel38
+Added Net: Name=NetLabel39
+Added Net: Name=VCC microusb
+Added Net: Name=VCC
+Added Class: Name=Pioneer
+Added Room: Name=Pioneer

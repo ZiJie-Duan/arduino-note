@@ -1,0 +1,67 @@
+Added Component: Designator=*(SOT23_M)
+Add component. Clean all parameters for all variants
+Added Component: Designator=BT1(BAT-2)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageDescription"; Value = "Battery; 2 Leads"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageReference"; Value = "BAT-2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Published"; Value = "24-Mar-1999"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Component: Designator=Buttom_A(Buttom)
+Add component. Clean all parameters for all variants
+Added Component: Designator=Buttom_B(Buttom)
+Add component. Clean all parameters for all variants
+Added Component: Designator=Buttom_X(Buttom)
+Add component. Clean all parameters for all variants
+Added Component: Designator=Buttom_Y(Buttom)
+Add component. Clean all parameters for all variants
+Added Component: Designator=Charger(charge)
+Add component. Clean all parameters for all variants
+Added Component: Designator=ESP32(NodeMCU-32)
+Add component. Clean all parameters for all variants
+Added Component: Designator=Rocker(rocker)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=GND Pin=*-1
+Added Pin To Net: NetName=VCC Pin=*-2
+Added Pin To Net: NetName=Net*_3 Pin=*-3
+Added Pin To Net: NetName=VCC Pin=Buttom_A-1
+Added Pin To Net: NetName=Buttom_A_IO Pin=Buttom_A-4
+Added Pin To Net: NetName=VCC Pin=Buttom_B-1
+Added Pin To Net: NetName=Buttom_B_IO Pin=Buttom_B-4
+Added Pin To Net: NetName=VCC Pin=Buttom_X-1
+Added Pin To Net: NetName=Buttom_X_IO Pin=Buttom_X-4
+Added Pin To Net: NetName=VCC Pin=Buttom_Y-1
+Added Pin To Net: NetName=Buttom_Y_IO Pin=Buttom_Y-4
+Added Pin To Net: NetName=VCC microusb Pin=Charger-1
+Added Pin To Net: NetName=GND microusb Pin=Charger-2
+Added Pin To Net: NetName=GND Pin=Charger-5
+Added Pin To Net: NetName=Net*_3 Pin=Charger-6
+Added Pin To Net: NetName=VCC Pin=ESP32-1
+Added Pin To Net: NetName=Buttom_A_IO Pin=ESP32-9
+Added Pin To Net: NetName=Buttom_B_IO Pin=ESP32-10
+Added Pin To Net: NetName=GND Pin=ESP32-20
+Added Pin To Net: NetName=Buttom_Y_IO Pin=ESP32-22
+Added Pin To Net: NetName=Buttom_X_IO Pin=ESP32-23
+Added Pin To Net: NetName=VCC Pin=Rocker-1
+Added Pin To Net: NetName=NetLabel35 Pin=Rocker-2
+Added Pin To Net: NetName=NetLabel36 Pin=Rocker-3
+Added Pin To Net: NetName=NetLabel37 Pin=Rocker-4
+Added Pin To Net: NetName=NetLabel38 Pin=Rocker-5
+Added Pin To Net: NetName=NetLabel39 Pin=Rocker-6
+Added Pin To Net: NetName=NetBT1_1 Pin=BT1-1
+Added Pin To Net: NetName=NetBT1_1 Pin=Charger-4
+Added Net: Name=NetBT1_1
+Added Pin To Net: NetName=NetBT1_2 Pin=BT1-2
+Added Pin To Net: NetName=NetBT1_2 Pin=Charger-3
+Added Net: Name=NetBT1_2
+Added Member To Class: ClassName=Pioneer Member=Component * DC3.3
+Added Member To Class: ClassName=Pioneer Member=Component BT1 Battery
+Added Member To Class: ClassName=Pioneer Member=Component Buttom_A Buttom
+Added Member To Class: ClassName=Pioneer Member=Component Buttom_B Buttom
+Added Member To Class: ClassName=Pioneer Member=Component Buttom_X Buttom
+Added Member To Class: ClassName=Pioneer Member=Component Buttom_Y Buttom
+Added Member To Class: ClassName=Pioneer Member=Component Charger
+Added Member To Class: ClassName=Pioneer Member=Component ESP32 NodeMCU-32
+Added Member To Class: ClassName=Pioneer Member=Component Rocker
+Added Room: Name=Pioneer
