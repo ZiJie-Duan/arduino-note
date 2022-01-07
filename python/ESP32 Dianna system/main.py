@@ -246,17 +246,16 @@ def main():
     esp_machine = ESP32_MACHINE()
     freq(240000000) 
 
-    esp_machine.buttom1 = Pin(27, Pin.IN)
-    #esp_machine.buttom2 = Pin(32, Pin.IN)
-    esp_machine.buttom2 = Pin(33, Pin.IN)
-    esp_machine.buttom3 = Pin(0, Pin.IN)
+    esp_machine.buttom1 = Pin(25, Pin.IN)
+    esp_machine.buttom2 = Pin(26, Pin.IN)
+    esp_machine.buttom3 = Pin(23, Pin.IN)
 
-    i2c1 = I2C(scl=Pin(22), sda=Pin(23))
+    i2c1 = I2C(scl=Pin(33), sda=Pin(32))
     oled1 = SSD1306_I2C(128, 64, i2c1)
     oled1.rotate(2)
     esp_machine.oled1 = oled1
 
-    i2c2 = I2C(scl=Pin(25), sda=Pin(26))
+    i2c2 = I2C(scl=Pin(13), sda=Pin(12))
     oled2 = SSD1306_I2C(128, 64, i2c2)
     oled2.rotate(2)
     esp_machine.oled2 = oled2
@@ -264,8 +263,8 @@ def main():
     dsg = DIANNA_SYS(esp_machine = esp_machine)
     dsg.show_logo()
 
-    _thread.start_new_thread(esp_machine.interactive_check, ())
-    dsg.show_main_menu()
+    #_thread.start_new_thread(esp_machine.interactive_check, ())
+    #dsg.show_main_menu()
 
 if __name__ == "__main__":
     main()
