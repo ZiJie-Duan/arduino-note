@@ -193,7 +193,12 @@ class ESP32_MACHINE:
                     self.oled2.text(sentence, str_lenth*8, js)
                     js += 10
                 self.oled2.show()
-    
+
+
+class MICROPY_MACHINE(ESP32_MACHINE):
+    def __init__(self) -> None:
+        pass
+
 
 class DIANNA_SYS:
     def __init__(self,esp_machine):
