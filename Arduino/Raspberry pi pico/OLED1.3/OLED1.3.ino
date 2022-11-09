@@ -39,7 +39,8 @@ void setup() {
   display.clearDisplay();
   display.setTextSize(1);             // Normal 1:1 pixel scale
   display.setTextColor(SSD1306_WHITE);        // Draw white text
-  display.setCursor(40,30);             
+  display.setCursor(40,30); 
+  display.drawPixel(1,1,SSD1306_WHITE); 
   display.println("HOWDY !");
   display.display();
 }
