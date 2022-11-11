@@ -19,11 +19,11 @@
 #define BLACK SSD1306_BLACK
 
 #define SPARK_SPEED 0
-#define SPARK_TYPE 1
-#define SMALLEST_SPARK 3
-#define BIGEST_SPARK 10
+#define SPARK_TYPE 8
+#define SMALLEST_SPARK 20
+#define BIGEST_SPARK 30
 #define SHORTEST_SPARK_LIFE 2
-#define LONGEST_SPARK_LIFE 5
+#define LONGEST_SPARK_LIFE 7
 
 #define SCREEN_SPACE_WIDTH 4
 #define SCREEN_SPACE_HEIGHT 4
@@ -40,8 +40,8 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 uint8_t boundary_check(uint8_t x_axis, uint8_t y_axis);
 void print_pixel();
 void ordered_insert(uint8_t screen_time_index_tem, uint8_t *pix_data);
-void draw_a_line(uint8_t x_axis, uint8_t y_axis, uint8_t direction, uint8_t number, uint8_t delay = 1);
-void draw_a_point(uint8_t x_axis, uint8_t y_axis, uint8_t delay = 1);
+void draw_a_line(uint8_t x_axis, uint8_t y_axis, uint8_t direction, uint8_t size, uint8_t life = 1);
+void draw_a_point(uint8_t x_axis, uint8_t y_axis, uint8_t life = 1);
 void spark_maker(uint8_t x_axis, uint8_t y_axis, uint8_t type, uint8_t size);
 void send_signal();
 
@@ -54,18 +54,17 @@ void setup() {
   display.setTextSize(1);               // Normal 1:1 pixel scale
   display.setTextColor(WHITE);  // Draw white text
   delay(3000);
-  spark_maker(50,30,2,5);
+  //spark_maker(50,30,2,5);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  //g_x_axis = random(SCREEN_SPACE_WIDTH, SCREEN_WIDTH-SCREEN_SPACE_WIDTH);
-  //g_y_axis = random(SCREEN_SPACE_HEIGHT, SCREEN_HEIGHT-SCREEN_SPACE_HEIGHT);
-  //g_spark_type = random(1, SPARK_TYPE+1);
-  //g_spark_size = random(SMALLEST_SPARK, BIGEST_SPARK+1);
-  //spark_maker(g_x_axis,g_y_axis,g_spark_type,g_spark_size);
+  g_x_axis = random(SCREEN_SPACE_WIDTH, SCREEN_WIDTH-SCREEN_SPACE_WIDTH);
+  g_y_axis = random(SCREEN_SPACE_HEIGHT, SCREEN_HEIGHT-SCREEN_SPACE_HEIGHT);
+  g_spark_type = random(1, SPARK_TYPE+1);
+  g_spark_size = random(SMALLEST_SPARK, BIGEST_SPARK+1);
+  spark_maker(g_x_axis,g_y_axis,g_spark_type,g_spark_size);
   print_pixel();
-  delay(2000);
 }
 
 void send_signal(){
@@ -99,10 +98,10 @@ void ordered_insert(uint8_t screen_time_index_tem, uint8_t *pix_data)
   }
 }
 
-void draw_a_line(uint8_t x_axis, uint8_t y_axis, uint8_t direction, uint8_t number, uint8_t delay)
+void draw_a_line(uint8_t x_axis, uint8_t y_axis, uint8_t direction, uint8_t size, uint8_t life)
 { 
   uint8_t sseq_data[] = {0,0,0}; //init
-  for (int i=0; i<number; i++){
+  for (int i=0; i<size; i++){
     switch (direction)
     {
     case 1:
@@ -140,16 +139,17 @@ void draw_a_line(uint8_t x_axis, uint8_t y_axis, uint8_t direction, uint8_t numb
       sseq_data[2] = 1;
       ordered_insert(Screen_Time_Index+i, sseq_data);
       sseq_data[2] = 0;
-      ordered_insert(Screen_Time_Index+i+delay, sseq_data);
+      ordered_insert(Screen_Time_Index+i+life, sseq_data);
+
     }
   }
 }
 
-void draw_a_point(uint8_t x_axis, uint8_t y_axis, uint8_t delay){
+void draw_a_point(uint8_t x_axis, uint8_t y_axis, uint8_t life){
   uint8_t sseq_data[] = {x_axis,y_axis,1}; //light
   ordered_insert(Screen_Time_Index, sseq_data);
   sseq_data[2] = 0; //dark
-  ordered_insert(Screen_Time_Index+delay, sseq_data);
+  ordered_insert(Screen_Time_Index+life, sseq_data);
 }
 
 void spark_maker(uint8_t x_axis, uint8_t y_axis, uint8_t type, uint8_t size){
@@ -202,7 +202,7 @@ void spark_maker(uint8_t x_axis, uint8_t y_axis, uint8_t type, uint8_t size){
 
 
 void print_pixel(){
-  for (int i=1; i<SSEQ_PIXS_NUM; i++){
+  for (int i=0; i<SSEQ_PIXS_NUM; i++){
     switch (Screen_Sequence[Screen_Time_Index][i][0])
     {
     case 0:
@@ -228,6 +228,7 @@ void print_pixel(){
       break;
     }
   }
+  
   display.display();
   if (Screen_Time_Index >= SSEQ_TIME_NUM-1){ //these code use the Screen_Time_Index value First
     Screen_Time_Index = 0;
