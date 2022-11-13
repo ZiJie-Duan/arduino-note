@@ -2,20 +2,20 @@
 #include <SPI.h>
 #include <Wire.h>
 #include <Adafruit_GFX.h>
-#include <Adafruit_SSD1306.h>
+#include <Adafruit_SH110X.h>
 #include <string.h>
 
 #define SCREEN_WIDTH 128     // OLED display width, in pixels
 #define SCREEN_HEIGHT 64     // OLED display height, in pixels
 #define OLED_RESET -1        // Reset pin # (or -1 if sharing Arduino reset pin)
-#define SCREEN_ADDRESS 0x3C  ///< See datasheet for Address; 0x3C
+#define i2c_Address 0x3c  ///< See datasheet for Address; 0x3C
 
-#define SSEQ_TIME_NUM 10 //screen_sequence pixel life length
-#define SSEQ_PIXS_NUM 500 //screen_sequence max number of useful pixel
+#define SSEQ_TIME_NUM 30 //screen_sequence pixel life length
+#define SSEQ_PIXS_NUM 800 //screen_sequence max number of useful pixel
 #define SSEQ_BASE_UNIT 4 //screen_sequence base unit
 // SSEQ_PIXS_NUM, the first location is a arr [x,0,0], x direct how many data in the SSEQ_PIXS_NUM
-#define WHITE SSD1306_WHITE
-#define BLACK SSD1306_BLACK
+#define WHITE SH110X_WHITE
+#define BLACK SH110X_BLACK
 
 #define SPARK_SPEED 0
 #define SPARK_TYPE 8
@@ -36,7 +36,7 @@ int g_spark_type = 0;
 int g_spark_size = 0;
 
 
-Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+Adafruit_SH1106G display = Adafruit_SH1106G(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 int boundary_check(int x_axis, int y_axis);
 void print_pixel();
 void ordered_insert(int screen_time_index_tem, int *pix_data);
@@ -48,7 +48,7 @@ void send_signal();
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS);
+  display.begin(i2c_Address, true);
   display.setCursor(0,0);
   display.clearDisplay();
   display.setTextSize(1);               // Normal 1:1 pixel scale
@@ -63,6 +63,8 @@ void loop() {
   g_y_axis = random(SCREEN_SPACE_HEIGHT, SCREEN_HEIGHT-SCREEN_SPACE_HEIGHT);
   g_spark_type = random(1, SPARK_TYPE+1);
   g_spark_size = random(SMALLEST_SPARK, BIGEST_SPARK+1);
+  spark_maker(g_x_axis,g_y_axis,g_spark_type,g_spark_size);
+  spark_maker(g_x_axis,g_y_axis,g_spark_type,g_spark_size);
   spark_maker(g_x_axis,g_y_axis,g_spark_type,g_spark_size);
   print_pixel();
   //if (cont > 15) {cont = 0; display.clearDisplay();}
