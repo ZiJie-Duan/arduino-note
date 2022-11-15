@@ -1,16 +1,17 @@
-// 在树莓派上运行OLED1.3 首先需要注意修改 pico内部的iic引脚映射，接着修改Adafruit_SSD1306.h文件，移除掉提示不存在的库文件
 #include <SPI.h>
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SH110X.h>
+#include <Adafruit_SSD1306.h>
 #include <string.h>
 
-#define SCREEN_WIDTH 128     // OLED display width, in pixels
-#define SCREEN_HEIGHT 64     // OLED display height, in pixels
+#define SCREEN_WIDTH 128     // OLED display_1 width, in pixels
+#define SCREEN_HEIGHT 64     // OLED display_1 height, in pixels
 #define OLED_RESET -1        // Reset pin # (or -1 if sharing Arduino reset pin)
-#define i2c_Address 0x3c  ///< See datasheet for Address; 0x3C
+#define i2c_Address_1 0x3D  ///< See datasheet for Address; 0x3C
+#define i2c_Address_2 0x3C  ///< See datasheet for Address; 0x3C
 
-#define SSEQ_TIME_NUM 30 //screen_sequence pixel life length
+#define SSEQ_TIME_NUM 5 //screen_sequence pixel life length
 #define SSEQ_PIXS_NUM 800 //screen_sequence max number of useful pixel
 #define SSEQ_BASE_UNIT 4 //screen_sequence base unit
 // SSEQ_PIXS_NUM, the first location is a arr [x,0,0], x direct how many data in the SSEQ_PIXS_NUM
@@ -19,10 +20,10 @@
 
 #define SPARK_SPEED 0
 #define SPARK_TYPE 8
-#define SMALLEST_SPARK 5
-#define BIGEST_SPARK 17
-#define SHORTEST_SPARK_LIFE 2
-#define LONGEST_SPARK_LIFE 7
+#define SMALLEST_SPARK 4
+#define BIGEST_SPARK 12
+#define SHORTEST_SPARK_LIFE 3
+#define LONGEST_SPARK_LIFE 6
 
 #define SCREEN_SPACE_WIDTH 4
 #define SCREEN_SPACE_HEIGHT 4
@@ -35,8 +36,8 @@ int g_y_axis = 0;
 int g_spark_type = 0;
 int g_spark_size = 0;
 
-
 Adafruit_SH1106G display = Adafruit_SH1106G(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+Adafruit_SH1106G display_1 = Adafruit_SH1106G(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 int boundary_check(int x_axis, int y_axis);
 void print_pixel();
 void ordered_insert(int screen_time_index_tem, int *pix_data);
@@ -48,11 +49,16 @@ void send_signal();
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  display.begin(i2c_Address, true);
+  display.begin(i2c_Address_2, true);
+  display_1.begin(i2c_Address_1, true);
   display.setCursor(0,0);
   display.clearDisplay();
   display.setTextSize(1);               // Normal 1:1 pixel scale
   display.setTextColor(WHITE);  // Draw white text
+  display_1.setCursor(0,0);
+  display_1.clearDisplay();
+  display_1.setTextSize(1);               // Normal 1:1 pixel scale
+  display_1.setTextColor(WHITE);  // Draw white text
   delay(3000);
   //spark_maker(50,30,2,5);
 }
@@ -64,10 +70,9 @@ void loop() {
   g_spark_type = random(1, SPARK_TYPE+1);
   g_spark_size = random(SMALLEST_SPARK, BIGEST_SPARK+1);
   spark_maker(g_x_axis,g_y_axis,g_spark_type,g_spark_size);
-  spark_maker(g_x_axis,g_y_axis,g_spark_type,g_spark_size);
-  spark_maker(g_x_axis,g_y_axis,g_spark_type,g_spark_size);
   print_pixel();
-  //if (cont > 15) {cont = 0; display.clearDisplay();}
+  Serial.println("Program FINISH HERE");
+  //if (cont > 15) {cont = 0; display_1.cleardisplay_1();}
 }
 
 void spark_maker(int x_axis, int y_axis, int type, int size){
@@ -201,12 +206,12 @@ void print_pixel(){
 
     case 1:
       if (Screen_Sequence[Screen_Time_Index][i][3]){
-        display.drawPixel(
+        display_1.drawPixel(
         Screen_Sequence[Screen_Time_Index][i][1],
         Screen_Sequence[Screen_Time_Index][i][2],
         WHITE);
       } else {
-        display.drawPixel(
+        display_1.drawPixel(
         Screen_Sequence[Screen_Time_Index][i][1],
         Screen_Sequence[Screen_Time_Index][i][2],
         BLACK);
@@ -219,9 +224,7 @@ void print_pixel(){
       break;
     }
   }
-  Serial.println("ok I know you will die here");
-  display.display();
-  Serial.println("right!");
+  display_1.display();
   if (Screen_Time_Index >= SSEQ_TIME_NUM-1){ //these code use the Screen_Time_Index value First
     Screen_Time_Index = 0;
   } else {
